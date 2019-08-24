@@ -9,6 +9,9 @@ import javax.annotation.Resource;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.orm.hibernate3.HibernateTemplate;
+
+import cn.itcast.oa.domain.Book;
 /**
  * 通用Dao实现
  * @author zhaoqx
@@ -17,7 +20,6 @@ import org.hibernate.SessionFactory;
  */
 @SuppressWarnings("unchecked")
 public class BaseDaoImpl<T> implements IBaseDao<T> {
-
 	@Resource
 	private SessionFactory sessionFactory;
 	

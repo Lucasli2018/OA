@@ -2,15 +2,37 @@
 <!DOCTYPE struts PUBLIC
 	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
-
 <struts>
-    <constant name="struts.devMode" value="true" />
+    <constant name="struts.devMode" value="false" />
     <!-- 将对象工厂指定为spring -->
     <constant name="struts.objectFactory" value="spring"/>
     <!-- struts的Action访问后缀 -->
     <constant name="struts.action.extension" value="do"/>
-
+    <!-- 指定表单主题 -->
+	<constant name="struts.ui.theme" value="simple"/>
     <package name="default" namespace="/" extends="struts-default">
     	<action name="bookAction" class="bookAction"></action>
+    	
+    	<!-- 岗位管理Action -->
+    	<action name="role_*"  class="roleAction" method="{1}">
+    		<result name="list">/WEB-INF/jsp/role/list.jsp</result>
+    		<result name="toList" type="redirectAction">
+    			<param name="actionName">role_list</param>
+    			<param name="namespace">/</param>
+    		</result>
+    		<result name="editUI">/WEB-INF/jsp/role/save.jsp</result>
+    		<result name="addUI">/WEB-INF/jsp/role/save.jsp</result>
+    	</action>
+    	
+    	<!-- 部门管理Action -->
+    	<action name="department_*" class="departmentAction" method="{1}">
+    		<result name="list">/WEB-INF/jsp/department/list.jsp</result>
+    		<result name="toList" type="redirectAction">
+    			<param name="actionName">department_list?parentId=${parentId}</param>
+    			<param name="namespace">/</param>
+    		</result>
+    		<result name="addUI">/WEB-INF/jsp/department/save.jsp</result>
+    		<result name="editUI">/WEB-INF/jsp/department/save.jsp</result>
+    	</action>
     </package>
 </struts>
