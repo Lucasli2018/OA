@@ -71,5 +71,22 @@
     	<action name="home_*" class="homeAction" method="{1}">
     		<result name="{1}">/WEB-INF/jsp/home/{1}.jsp</result>
     	</action>
+    	
+    	<!-- 版块管理Action -->
+    	<action name="forumManage_*" class="forumManageAction" method="{1}">
+    		<result name="list">/WEB-INF/jsp/forumManage/list.jsp</result>
+    		<result name="toList" type="redirectAction">
+    			<param name="actionName">forumManage_list</param>
+    			<param name="namespace">/</param>
+    		</result>
+    		<result name="addUI">/WEB-INF/jsp/forumManage/save.jsp</result>
+    		<result name="editUI">/WEB-INF/jsp/forumManage/save.jsp</result>
+    	</action>
+    	
+    	<!-- 参与版块操作的Action -->
+    	<action name="forum_*" class="forumAction" method="{1}">
+    		<result name="list">/WEB-INF/jsp/forum/list.jsp</result>
+    		<result name="forumShow">/WEB-INF/jsp/forum/show.jsp</result>
+    	</action>
     </package>
 </struts>

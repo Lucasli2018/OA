@@ -37,29 +37,28 @@ public class CheckPrivilegeInterceptor extends AbstractInterceptor{
 		if(user == null){
 			// a 如果用户访问的是登录功能,则放行
 			if("/user_login".equals(url)){
-				ai.invoke();
+				return ai.invoke();
 			}else{
 				// b 如果用户访问的不是登录功能，则跳转到登录页面
 				return "loginUI";
 			}
 		}else{
 			// 二， 用户已经登录
-				List<String> allUrl = (List<String>) ServletActionContext.getServletContext().getAttribute("allUrl");
-				//如果用户访问的是要验证的权限
-				if(allUrl.contains(url)){
-					boolean b = user.hasPrivilegeByUrl(url);
-					if(b){
-						// a 如果用户有权限，则放行
-						ai.invoke();
-					}else{
-						// b 如果用户没有权限，则跳转到没有权限的提示页面
-						return "noPrivilegeUI";
-					}
+			List<String> allUrl = (List<String>) ServletActionContext.getServletContext().getAttribute("allUrl");
+			//如果用户访问的是要验证的权限
+			if(allUrl.contains(url)){
+				boolean b = user.hasPrivilegeByUrl(url);
+				if(b){
+					// a 如果用户有权限，则放行
+					return ai.invoke();
 				}else{
-					//如果用户访问的不是要验证的权限
-					ai.invoke();
+					// b 如果用户没有权限，则跳转到没有权限的提示页面
+					return "noPrivilegeUI";
 				}
+			}else{
+				//如果用户访问的不是要验证的权限
+				return ai.invoke();
+			}
 		}
-		return ai.invoke();
 	}
 }
