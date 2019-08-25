@@ -9,4 +9,8 @@ public interface ITopicService {
 
 	List<Topic> findTopicByForum(Forum model);
 
+	public void save(Topic model);
+
+	public Topic getById(Long id);
+
 }

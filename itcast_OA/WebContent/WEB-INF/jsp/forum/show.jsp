@@ -27,8 +27,10 @@
 			<s:a action="forum_list" namespace="/">论坛</s:a>
 			<font class="MenuPoint"> &gt; </font>
 			${name }
-			<span style="margin-left:30px;"><a href="${pageContext.request.contextPath}/BBS_Topic/saveUI.html">
-				<img align="absmiddle" src="${pageContext.request.contextPath}/style/blue/images/button/publishNewTopic.png"/></a>
+			<span style="margin-left:30px;">
+				<s:a namespace="/" action="topic_addUI?forumId=%{id}">
+					<img align="absmiddle" src="${pageContext.request.contextPath}/style/blue/images/button/publishNewTopic.png"/>
+				</s:a>
 			</span>
 		</div>
 		
@@ -59,7 +61,10 @@
 							<td class="ForumTopicPageDataLine" align="center">
 								<img src="${pageContext.request.contextPath}/style/images/topicType_${type}.gif" />
 							</td>
-							<td class="Topic"><a class="Default" href="${pageContext.request.contextPath}/BBS_Topic/topicShow.html">${title}</a></td>
+							<td class="Topic">
+							<s:a cssClass="Default" action="topic_show?id=%{id}">
+								${title}
+							</s:a></td>
 							<td class="ForumTopicPageDataLine">
 								<ul class="ForumPageTopicUl">
 									<li class="Author">${author.name }</li>
