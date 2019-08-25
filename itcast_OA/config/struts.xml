@@ -34,5 +34,16 @@
     		<result name="addUI">/WEB-INF/jsp/department/save.jsp</result>
     		<result name="editUI">/WEB-INF/jsp/department/save.jsp</result>
     	</action>
+    	
+    	<!-- 用户管理Action -->
+    	<action name="user_*" class="userAction" method="{1}">
+    		<result name="list">/WEB-INF/jsp/user/list.jsp</result>
+    		<result name="toList" type="redirectAction">
+    			<param name="actionName">user_list</param>
+    			<param name="namespace">/</param>
+    		</result>
+    		<result name="addUI">/WEB-INF/jsp/user/save.jsp</result>
+    		<result name="editUI">/WEB-INF/jsp/user/save.jsp</result>
+    	</action>
     </package>
 </struts>

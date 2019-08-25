@@ -98,7 +98,7 @@ public class TestBaseDao {
 		IBookService bookService = (IBookService) ctx.getBean("bookServiceImpl");
 		
 		Book book = new Book();
-		book.setName("python");
+		book.setName("c");
 		
 		bookService.save(book);
 	}

@@ -11,7 +11,7 @@
 		<property name="description" length="128"/>
 		
 		<!-- 子部门和上级部门的多对一关系 -->
-		<many-to-one name="parent" class="cn.itcast.oa.domain.Department" column="parentId" lazy="false"/>
+		<many-to-one name="parent" class="cn.itcast.oa.domain.Department" column="parentId"/>
 		
 		<!-- 上级部门和子部门之间的一对多关系 -->
 		<set name="children" cascade="delete">

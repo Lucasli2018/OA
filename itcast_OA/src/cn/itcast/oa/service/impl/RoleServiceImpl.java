@@ -43,4 +43,8 @@ public class RoleServiceImpl implements IRoleService {
 		roleDao.save(model);
 	}
 
+	public List<Role> getByIds(Long[] roleIds) {
+		return roleDao.getByIds(roleIds);
+	}
+
 }

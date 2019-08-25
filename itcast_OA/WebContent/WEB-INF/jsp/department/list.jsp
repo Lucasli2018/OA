@@ -39,7 +39,7 @@
 					</s:a>&nbsp;</td>
 				<td>${parent.name}&nbsp;</td>
 				<td>${description}&nbsp;</td>
-				<td><s:a onclick="return window.confirm('这将删除所有的下级部门，您确定要删除吗？')" action="department_delete?id=%{id}" namespace="/">删除</s:a>
+				<td><s:a onclick="return window.confirm('这将删除所有的下级部门，您确定要删除吗？')" action="department_delete?id=%{id}&parentId=%{parent.id}" namespace="/">删除</s:a>
 					<s:a action="department_editUI?id=%{id}" namespace="/">修改</s:a>
 				</td>
 			</tr>

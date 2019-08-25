@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 
 import cn.itcast.oa.base.BaseAction;
 import cn.itcast.oa.domain.Department;
+import cn.itcast.oa.utils.DepartmentUtils;
 
 /**
  * 部门管理
@@ -51,8 +52,11 @@ public class DepartmentAction extends BaseAction<Department>{
 	 */
 	public String addUI(){
 		//准备部门列表数据，用于select框显示
-		List<Department> list = departmentService.findAll();
-		getValueStack().set("departmentList", list);
+		//List<Department> list = departmentService.findAll();
+		List<Department> topList = departmentService.findTopList();//所有顶级部门列表
+		List<Department> treeList = DepartmentUtils.getTreeList(topList,null);
+		
+		getValueStack().set("departmentList", treeList);
 		
 		return "addUI";
 	}
@@ -77,12 +81,15 @@ public class DepartmentAction extends BaseAction<Department>{
 	 */
 	public String editUI(){
 		//准备数据：部门列表
-		List<Department> list = departmentService.findAll();
+		//List<Department> list = departmentService.findAll();
 		
 		//准备数据：要修改的部门
 		Department dept = departmentService.getById(model.getId());
 		
-		getValueStack().set("departmentList", list);
+		List<Department> topList = departmentService.findTopList();//所有顶级部门列表
+		List<Department> treeList = DepartmentUtils.getTreeList(topList,dept.getId());
+		
+		getValueStack().set("departmentList", treeList);
 		getValueStack().push(dept);
 		
 		if(dept.getParent() != null){
