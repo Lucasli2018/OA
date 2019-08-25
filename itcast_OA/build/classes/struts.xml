@@ -22,6 +22,7 @@
     		</result>
     		<result name="editUI">/WEB-INF/jsp/role/save.jsp</result>
     		<result name="addUI">/WEB-INF/jsp/role/save.jsp</result>
+    		<result name="setPrivilegeUI">/WEB-INF/jsp/role/setPrivilegeUI.jsp</result>
     	</action>
     	
     	<!-- 部门管理Action -->
@@ -44,6 +45,11 @@
     		</result>
     		<result name="addUI">/WEB-INF/jsp/user/save.jsp</result>
     		<result name="editUI">/WEB-INF/jsp/user/save.jsp</result>
+    	</action>
+    	
+    	<!-- 首页Action -->
+    	<action name="home_*" class="homeAction" method="{1}">
+    		<result name="{1}">/WEB-INF/jsp/home/{1}.jsp</result>
     	</action>
     </package>
 </struts>

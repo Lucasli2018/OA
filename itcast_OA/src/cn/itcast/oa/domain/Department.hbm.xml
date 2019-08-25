@@ -14,7 +14,7 @@
 		<many-to-one name="parent" class="cn.itcast.oa.domain.Department" column="parentId"/>
 		
 		<!-- 上级部门和子部门之间的一对多关系 -->
-		<set name="children" cascade="delete">
+		<set name="children" cascade="delete" order-by="id">
 			<key column="parentId"/>
 			<one-to-many class="cn.itcast.oa.domain.Department"/>
 		</set>

@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import cn.itcast.oa.service.IBookService;
 import cn.itcast.oa.service.IDepartmentService;
+import cn.itcast.oa.service.IPrivilegeService;
 import cn.itcast.oa.service.IRoleService;
 import cn.itcast.oa.service.IUserService;
 
@@ -29,6 +30,8 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 	protected IDepartmentService departmentService;
 	@Resource
 	protected IUserService userService;
+	@Resource
+	protected IPrivilegeService privilegeService;
 	
 	//在构造方法中获得model类型
 	public BaseAction(){
