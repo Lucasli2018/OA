@@ -18,4 +18,6 @@ public interface IUserService {
 
 	public int findByLoginName(String loginName);
 
+	public User login(User model);
+
 }

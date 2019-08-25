@@ -19,7 +19,7 @@
 		<many-to-one name="department" class="cn.itcast.oa.domain.Department" column="departmentId"/>
 		
 		<!-- 用户和岗位的多对多关系 -->
-		<set name="roles" table="itcast_user_role">
+		<set name="roles" table="itcast_user_role" lazy="false">
 			<key column="userId"/>
 			<many-to-many class="cn.itcast.oa.domain.Role" column="roleId"/>
 		</set>

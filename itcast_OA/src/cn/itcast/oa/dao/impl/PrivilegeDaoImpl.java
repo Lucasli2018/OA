@@ -24,4 +24,11 @@ public class PrivilegeDaoImpl extends BaseDaoImpl<Privilege> implements IPrivile
 		return this.getSession().createQuery(hql).list();
 	}
 
+	/**
+	 * 查询所有权限对应的URL
+	 */
+	public List<String> findAllUrl() {
+		String hql = "SELECT url FROM Privilege WHERE url IS NOT NULL";
+		return this.getSession().createQuery(hql).list();
+	}
 }

@@ -180,6 +180,36 @@ public class UserAction extends BaseAction<User>{
 		}
 		return NONE;
 	}
+	
+	/**
+	 * 用户登录
+	 */
+	public String login(){
+		User user = userService.login(model);
+		
+		if(user != null){
+			//登录成功
+			//将登录用户放入Session
+			ServletActionContext.getRequest().getSession().setAttribute("loginUser", user);
+			return "home";
+		}else{
+			//登录失败
+			//设置错误提示
+			this.addActionError("用户名或者密码错误！");
+			return "loginUI";
+		}
+	}
+	
+	/**
+	 * 用户退出系统
+	 */
+	public String logout(){
+		//从Session中清除登录用户
+		ServletActionContext.getRequest().getSession().removeAttribute("loginUser");
+		
+		//跳转到登录页面
+		return "loginUI";
+	}
 
 	public void setDepartmentId(Long departmentId) {
 		this.departmentId = departmentId;

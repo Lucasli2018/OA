@@ -3,7 +3,7 @@
 	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
-    <constant name="struts.devMode" value="false" />
+    <constant name="struts.devMode" value="true" />
     <!-- 将对象工厂指定为spring -->
     <constant name="struts.objectFactory" value="spring"/>
     <!-- struts的Action访问后缀 -->
@@ -11,6 +11,24 @@
     <!-- 指定表单主题 -->
 	<constant name="struts.ui.theme" value="simple"/>
     <package name="default" namespace="/" extends="struts-default">
+    	<!-- 声明自定义拦截器 -->
+    	<interceptors>
+    		<interceptor name="checkPrivilegeInterceptor" class="cn.itcast.oa.interceptor.CheckPrivilegeInterceptor"></interceptor>
+    		<!-- 自定义拦截器栈 -->
+    		<interceptor-stack name="myInterceptor">
+    			<interceptor-ref name="checkPrivilegeInterceptor"></interceptor-ref>
+    			<interceptor-ref name="defaultStack"></interceptor-ref>
+    		</interceptor-stack>
+    	</interceptors>
+    	<!-- 指定默认拦截器栈 -->
+    	<default-interceptor-ref name="myInterceptor"></default-interceptor-ref>
+    	
+    	<!-- 配置全局结果视图 -->
+    	<global-results>
+    		<result name="loginUI">/login.jsp</result>
+    		<result name="noPrivilegeUI">/noPrivilege.jsp</result>
+    	</global-results>
+    	
     	<action name="bookAction" class="bookAction"></action>
     	
     	<!-- 岗位管理Action -->
@@ -45,6 +63,8 @@
     		</result>
     		<result name="addUI">/WEB-INF/jsp/user/save.jsp</result>
     		<result name="editUI">/WEB-INF/jsp/user/save.jsp</result>
+    		<result name="home">/WEB-INF/jsp/home/index.jsp</result>
+    		<result name="loginUI">/login.jsp</result>
     	</action>
     	
     	<!-- 首页Action -->

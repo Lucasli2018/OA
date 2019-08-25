@@ -17,7 +17,7 @@
 		
 		<div id="Head1Right">
 			<div id="Head1Right_UserName">
-                <img border="0" width="13" height="14" src="${pageContext.request.contextPath }/style/images/top/user.gif" /> 您好，<b>管理员</b>
+                <img border="0" width="13" height="14" src="${pageContext.request.contextPath }/style/images/top/user.gif" /> 您好，<b>${sessionScope.loginUser.loginName }</b>
 			</div>
 			<div id="Head1Right_UserDept"></div>
 			<div id="Head1Right_UserSetup">
@@ -29,9 +29,9 @@
 		</div>
 		
         <div id="Head1Right_SystemButton">
-            <a target="_parent" href="System_User/logout.html">
+            <s:a target="_parent" action="user_logout" namespace="/">
 				<img width="78" height="20" alt="退出系统" src="${pageContext.request.contextPath }/style/blue/images/top/logout.gif" />
-			</a>
+			</s:a>
         </div>
 		
         <div id="Head1Right_Button">

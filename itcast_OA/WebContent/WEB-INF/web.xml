@@ -26,6 +26,11 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	
+	<!-- 必须放在spring的监听器后面 -->
+	<listener>
+		<listener-class>cn.itcast.oa.listener.OAInitListener</listener-class>
+	</listener>
+	
 	<!-- 配置struts2的前端控制器 -->
 	<filter>
 		<filter-name>struts</filter-name>
@@ -37,6 +42,6 @@
 	</filter-mapping>
 	
   <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>login.jsp</welcome-file>
   </welcome-file-list>
 </web-app>

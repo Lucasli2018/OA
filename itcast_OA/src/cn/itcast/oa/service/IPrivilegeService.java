@@ -13,4 +13,6 @@ public interface IPrivilegeService {
 
 	public List<Privilege> findTopList();
 
+	public List<String> findAllUrl();
+
 }

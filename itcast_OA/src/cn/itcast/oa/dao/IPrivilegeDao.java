@@ -9,4 +9,6 @@ public interface IPrivilegeDao extends IBaseDao<Privilege> {
 
 	public List<Privilege> findTopList();
 
+	public List<String> findAllUrl();
+
 }

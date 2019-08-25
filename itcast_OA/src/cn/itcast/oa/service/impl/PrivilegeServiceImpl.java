@@ -44,5 +44,12 @@ public class PrivilegeServiceImpl implements IPrivilegeService{
 		return privilegeDao.findTopList();
 	}
 
+	/**
+	 * 查询所有权限对应的URL
+	 */
+	public List<String> findAllUrl() {
+		return privilegeDao.findAllUrl();
+	}
+
 
 }
