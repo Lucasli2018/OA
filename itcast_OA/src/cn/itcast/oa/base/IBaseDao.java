@@ -2,6 +2,9 @@ package cn.itcast.oa.base;
 
 import java.util.List;
 
+import cn.itcast.oa.domain.PageBean;
+import cn.itcast.oa.utils.HQLHelper;
+
 /**
  * 通用Dao接口
  * @author zhaoqx
@@ -37,4 +40,9 @@ public interface IBaseDao<T> {
 	 * 查询所有
 	 */
 	public List<T> findAll();
+	
+	/**
+	 * 公共分页方法
+	 */
+	public PageBean getPageBean(HQLHelper hh,int currentPage);
 }

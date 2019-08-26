@@ -4,6 +4,11 @@
 	<TITLE>Itcast OA</TITLE>
 	 <%@include file="/WEB-INF/jsp/public/header.jsp" %>
 	<LINK HREF="${pageContext.request.contextPath}/style/blue/login.css" type=text/css rel=stylesheet />
+	<script type="text/javascript">
+		if(window.parent != window){
+			window.parent.location.href = "${pageContext.request.contextPath}/"; 
+		}
+	</script>
 </HEAD>
 
 <BODY LEFTMARGIN=0 TOPMARGIN=0 MARGINWIDTH=0 MARGINHEIGHT=0 CLASS=PageBody >

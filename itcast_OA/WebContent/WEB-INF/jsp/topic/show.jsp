@@ -57,49 +57,51 @@
 			</table>
 
 			<!-- ~~~~~~~~~~~~~~~ 显示主帖 ~~~~~~~~~~~~~~~ -->
-			<div class="ListArea">
-				<table border="0" cellpadding="0" cellspacing="1" width="100%">
-					<tr>
-						<td rowspan="3" width="130" class="PhotoArea" align="center" valign="top">
-							<!--作者头像-->
-							<div class="AuthorPhoto">
-								<img border="0" width="110" height="110" src="${pageContext.request.contextPath}/style/images/defaultAvatar.gif" 
-									onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/style/images/defaultAvatar.gif';" />
-							</div>
-							<!--作者名称-->
-							<div class="AuthorName">
-								${author.name }
-							</div>
-						</td>
-						
-					</tr>
-					<tr><!-- 文章内容 -->
-						<td valign="top" align="center">
-							<div class="Content">
-								${content }
-							</div>
-						</td>
-					</tr>
-					<tr><!--显示楼层等信息-->
-						<td class="Footer" height="28" align="center" valign="bottom">
-							<ul style="margin: 0px; width: 98%;">
-								<li style="float: left; line-height:18px;"><font color=#C30000>[楼主]</font>
-									<s:date name="postTime" format="yyyy-MM-dd HH:mm:ss"/>
-								</li>
-								<li style="float: right;"><a href="javascript:scroll(0,0)">
-									<img border="0" src="${pageContext.request.contextPath}/style/images/top.gif" /></a>
-								</li>
-							</ul>
-						</td>
-					</tr>
-				</table>
-			</div>
+			<s:if test="currentPage == 1">
+				<div class="ListArea">
+					<table border="0" cellpadding="0" cellspacing="1" width="100%">
+						<tr>
+							<td rowspan="3" width="130" class="PhotoArea" align="center" valign="top">
+								<!--作者头像-->
+								<div class="AuthorPhoto">
+									<img border="0" width="110" height="110" src="${pageContext.request.contextPath}/style/images/defaultAvatar.gif" 
+										onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/style/images/defaultAvatar.gif';" />
+								</div>
+								<!--作者名称-->
+								<div class="AuthorName">
+									${author.name }
+								</div>
+							</td>
+							
+						</tr>
+						<tr><!-- 文章内容 -->
+							<td valign="top" align="center">
+								<div class="Content">
+									${content }
+								</div>
+							</td>
+						</tr>
+						<tr><!--显示楼层等信息-->
+							<td class="Footer" height="28" align="center" valign="bottom">
+								<ul style="margin: 0px; width: 98%;">
+									<li style="float: left; line-height:18px;"><font color=#C30000>[楼主]</font>
+										<s:date name="postTime" format="yyyy-MM-dd HH:mm:ss"/>
+									</li>
+									<li style="float: right;"><a href="javascript:scroll(0,0)">
+										<img border="0" src="${pageContext.request.contextPath}/style/images/top.gif" /></a>
+									</li>
+								</ul>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</s:if>
 			<!-- ~~~~~~~~~~~~~~~ 显示主帖结束 ~~~~~~~~~~~~~~~ -->
 
 
 			<!-- ~~~~~~~~~~~~~~~ 显示回复列表 ~~~~~~~~~~~~~~~ -->
 			<div class="ListArea template">
-				<s:iterator value="replyList" status="s">
+				<s:iterator value="recordList" status="s">
 					<table border="0" cellpadding="0" cellspacing="1" width="100%">
 						<tr>
 							<td rowspan="3" width="130" class="PhotoArea" align="center" valign="top">
@@ -122,7 +124,7 @@
 								<ul style="margin: 0px; width: 98%;">
 									<li style="float: left; line-height:18px;"><font color=#C30000>
 									[
-										<s:property value="#s.count"/>
+										<s:property value=" (currentPage-1)*pageSize  +   #s.count"/>
 									楼]</font>
 										<s:date name="postTime" format="yyyy-MM-dd HH:mm:ss"/>
 									</li>
@@ -139,42 +141,12 @@
 		</div>
 
 		<!--分页信息-->
-		<div id=PageSelectorBar>
-			<div id=PageSelectorMemo>
-				页次：7/13页 &nbsp;
-				每页显示：30条 &nbsp;
-				总记录数：385条
-			</div>
-			<div id=PageSelectorSelectorArea>
-				<!--
-				<IMG SRC="${pageContext.request.contextPath}/style/blue/images/pageSelector/firstPage2.png"/>
-				-->
-				<a href="javascript:void(0)" title="首页" style="cursor: hand;">
-					<img src="${pageContext.request.contextPath}/style/blue/images/pageSelector/firstPage.png"/></a>
-				
-				<span class="PageSelectorNum" style="cursor: hand;" onClick="gotoPageNum(2);">3</span>
-				<span class="PageSelectorNum" style="cursor: hand;" onClick="gotoPageNum(2);">4</span>
-				<span class="PageSelectorNum" style="cursor: hand;" onClick="gotoPageNum(2);">5</span>
-				<span class="PageSelectorNum" style="cursor: hand;" onClick="gotoPageNum(2);">6</span>
-				<span class="PageSelectorNum PageSelectorSelected">7</span>
-				<span class="PageSelectorNum" style="cursor: hand;" onClick="gotoPageNum(2);">8</span>
-				<span class="PageSelectorNum" style="cursor: hand;" onClick="gotoPageNum(2);">9</span>
-				<span class="PageSelectorNum" style="cursor: hand;" onClick="gotoPageNum(2);">10</span>
-				<span class="PageSelectorNum" style="cursor: hand;" onClick="gotoPageNum(2);">11</span>
-				<span class="PageSelectorNum" style="cursor: hand;" onClick="gotoPageNum(2);">12</span>
-				
-				<!--
-				<IMG SRC="${pageContext.request.contextPath}/style/blue/images/pageSelector/lastPage2.png"/>
-				-->
-				<a href="#" title="尾页" style="cursor: hand;">
-					<img src="${pageContext.request.contextPath}/style/blue/images/pageSelector/lastPage.png"/></a>
-				
-				转到：
-				<input onFocus="this.select();" maxlength="2" class="inputStyle" type="text" value="1" name="currPage" tabindex="0"/>
-				<input type="submit" name="goBtn" value="Go" class="MiddleButtonStyle" />
-			</div>
-		</div>
-
+		<%@include file="/WEB-INF/jsp/public/pageView.jsp" %>
+		
+		<s:form id="pageForm" action="topic_show" namespace="/">
+			<s:hidden name="id"></s:hidden>
+		</s:form>
+		
 		<div class="ForumPageTableBorder" style="margin-top: 25px;">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr valign="bottom">

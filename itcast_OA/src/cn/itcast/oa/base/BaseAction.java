@@ -89,4 +89,15 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 	public User getLoginUser(){
 		return (User) ServletActionContext.getRequest().getSession().getAttribute("loginUser");
 	}
+	
+	//--
+	protected int currentPage = 1;//属性驱动，当前页码
+
+	public int getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
+	}
 }

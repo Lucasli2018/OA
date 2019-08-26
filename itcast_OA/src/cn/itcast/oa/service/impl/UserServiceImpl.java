@@ -9,8 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 import cn.itcast.oa.dao.IUserDao;
+import cn.itcast.oa.domain.PageBean;
 import cn.itcast.oa.domain.User;
 import cn.itcast.oa.service.IUserService;
+import cn.itcast.oa.utils.HQLHelper;
 import cn.itcast.oa.utils.MD5Utils;
 /**
  * 用户管理
@@ -68,5 +70,12 @@ public class UserServiceImpl implements IUserService {
 	 */
 	public User login(User model) {
 		return userDao.login(model);
+	}
+
+	/**
+	 * 分页查询
+	 */
+	public PageBean getPageBean(HQLHelper hh, int currentPage) {
+		return userDao.getPageBean(hh, currentPage);
 	}
 }

@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 
 import cn.itcast.oa.dao.IForumDao;
 import cn.itcast.oa.domain.Forum;
+import cn.itcast.oa.domain.PageBean;
 import cn.itcast.oa.service.IForumService;
+import cn.itcast.oa.utils.HQLHelper;
 
 /**
  * 参与版块操作
@@ -29,5 +31,7 @@ public class ForumServiceImpl implements IForumService{
 	public Forum getById(Long id) {
 		return forumDao.getById(id);
 	}
-
+	public PageBean getPageBean(HQLHelper hh, int currentPage) {
+		return forumDao.getPageBean(hh, currentPage);
+	}
 }

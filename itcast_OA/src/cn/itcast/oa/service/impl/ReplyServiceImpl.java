@@ -9,9 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cn.itcast.oa.dao.IReplyDao;
 import cn.itcast.oa.domain.Forum;
+import cn.itcast.oa.domain.PageBean;
 import cn.itcast.oa.domain.Reply;
 import cn.itcast.oa.domain.Topic;
 import cn.itcast.oa.service.IReplyService;
+import cn.itcast.oa.utils.HQLHelper;
 
 /**
  * 回复操作
@@ -44,6 +46,20 @@ public class ReplyServiceImpl implements IReplyService{
 	 */
 	public List<Reply> getReplyByTopic(Topic model) {
 		return replyDao.getReplyByTopic(model);
+	}
+
+	/**
+	 * 分页查询
+	 */
+	public PageBean getPageBean(int currentPage, Topic model) {
+		return replyDao.getPageBean(currentPage,model);
+	}
+
+	/**
+	 * 分页查询 
+	 */
+	public PageBean getPageBean(HQLHelper hh, int currentPage) {
+		return replyDao.getPageBean(hh, currentPage);
 	}
 
 }

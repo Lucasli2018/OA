@@ -30,7 +30,7 @@
 
 		<!--显示数据列表-->
         <tbody id="TableData" class="dataContainer" datakey="forumList">
-        	<s:iterator value="list" status="s">
+        	<s:iterator value="recordList" status="s">
 				<tr class="TableDetail1 template">
 					<td>${name}&nbsp;</td>
 					<td>${description}&nbsp;</td>
@@ -66,12 +66,11 @@
     </div>
 </div>
 
-<div class="Description">
-	说明：<br />
-	1，显示的列表按其sortOrder值升序排列。<br />
-	2，可以通过上移与下移功能调整顺序。最上面的不能上移，最下面的不能下移。<br />
-</div>
-
+<!-- 包含分页信息 -->
+<%@include file="/WEB-INF/jsp/public/pageView.jsp" %>
+<!-- 提供一个分页用的表单 -->
+<s:form id="pageForm" action="forumManage_list" namespace="/">
+</s:form>
 </body>
 </html>
 

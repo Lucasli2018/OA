@@ -43,6 +43,4 @@ public class Article {
 	public void setIpAddress(String ipAddress) {
 		this.ipAddress = ipAddress;
 	}
-	
-	
 }

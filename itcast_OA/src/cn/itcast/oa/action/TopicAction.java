@@ -8,8 +8,10 @@ import org.springframework.stereotype.Controller;
 
 import cn.itcast.oa.base.BaseAction;
 import cn.itcast.oa.domain.Forum;
+import cn.itcast.oa.domain.PageBean;
 import cn.itcast.oa.domain.Reply;
 import cn.itcast.oa.domain.Topic;
+import cn.itcast.oa.utils.HQLHelper;
 
 /**
  * 主题操作
@@ -20,6 +22,7 @@ import cn.itcast.oa.domain.Topic;
 @Scope("prototype")
 public class TopicAction extends BaseAction<Topic>{
 	private Long forumId;//属性驱动，版块id
+	
 	
 	/**
 	 * 跳转到发表主题页面
@@ -61,8 +64,16 @@ public class TopicAction extends BaseAction<Topic>{
 		getValueStack().push(topic);
 		
 		//根据主题查询对应的回复列表
-		List<Reply> replyList = replyService.getReplyByTopic(model);
-		getValueStack().set("replyList", replyList);
+		//List<Reply> replyList = replyService.getReplyByTopic(model);
+		//getValueStack().set("replyList", replyList);
+		
+		//PageBean pb = replyService.getPageBean(currentPage,model);
+		
+		HQLHelper hh = new HQLHelper(Reply.class);
+		hh.addWhere("o.topic = ?", model);
+		hh.addOrderBy("o.postTime", true);
+		PageBean pb = replyService.getPageBean(hh,currentPage);
+		getValueStack().push(pb);
 		
 		return "show";
 	}

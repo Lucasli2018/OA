@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 
 import cn.itcast.oa.dao.ITopicDao;
 import cn.itcast.oa.domain.Forum;
+import cn.itcast.oa.domain.PageBean;
 import cn.itcast.oa.domain.Topic;
 import cn.itcast.oa.service.ITopicService;
+import cn.itcast.oa.utils.HQLHelper;
 
 /**
  * 主题操作
@@ -45,6 +47,13 @@ public class TopicServiceImpl implements ITopicService{
 	 */
 	public Topic getById(Long id) {
 		return topicDao.getById(id);
+	}
+
+	/**
+	 * 分页查询
+	 */
+	public PageBean getPageBean(HQLHelper hh, int currentPage) {
+		return topicDao.getPageBean(hh, currentPage);
 	}
 
 }

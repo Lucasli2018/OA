@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <constant name="struts.devMode" value="true" />
+    <!-- 将对象工厂指定为spring -->
+    <constant name="struts.objectFactory" value="spring"/>
+    <!-- struts的Action访问后缀 -->
+    <constant name="struts.action.extension" value="do"/>
+    <!-- 指定表单主题 -->
+	<constant name="struts.ui.theme" value="simple"/>
+    <package name="default" namespace="/" extends="struts-default">
+    	<!-- 声明自定义拦截器 -->
+    	<interceptors>
+    		<interceptor name="checkPrivilegeInterceptor" class="cn.itcast.oa.interceptor.CheckPrivilegeInterceptor"></interceptor>
+    		<!-- 自定义拦截器栈 -->
+    		<interceptor-stack name="myInterceptor">
+    			<interceptor-ref name="checkPrivilegeInterceptor"></interceptor-ref>
+    			<interceptor-ref name="defaultStack"></interceptor-ref>
+    		</interceptor-stack>
+    	</interceptors>
+    	<!-- 指定默认拦截器栈 -->
+    	<default-interceptor-ref name="myInterceptor"></default-interceptor-ref>
+    	
+    	<!-- 配置全局结果视图 -->
+    	<global-results>
+    		<result name="loginUI">/login.jsp</result>
+    		<result name="noPrivilegeUI">/noPrivilege.jsp</result>
+    	</global-results>
+    	
+    	<action name="bookAction" class="bookAction"></action>
+    	
+    	<!-- 岗位管理Action -->
+    	<action name="role_*"  class="roleAction" method="{1}">
+    		<result name="list">/WEB-INF/jsp/role/list.jsp</result>
+    		<result name="toList" type="redirectAction">
+    			<param name="actionName">role_list</param>
+    			<param name="namespace">/</param>
+    		</result>
+    		<result name="editUI">/WEB-INF/jsp/role/save.jsp</result>
+    		<result name="addUI">/WEB-INF/jsp/role/save.jsp</result>
+    		<result name="setPrivilegeUI">/WEB-INF/jsp/role/setPrivilegeUI.jsp</result>
+    	</action>
+    	
+    	<!-- 部门管理Action -->
+    	<action name="department_*" class="departmentAction" method="{1}">
+    		<result name="list">/WEB-INF/jsp/department/list.jsp</result>
+    		<result name="toList" type="redirectAction">
+    			<param name="actionName">department_list?parentId=${parentId}</param>
+    			<param name="namespace">/</param>
+    		</result>
+    		<result name="addUI">/WEB-INF/jsp/department/save.jsp</result>
+    		<result name="editUI">/WEB-INF/jsp/department/save.jsp</result>
+    	</action>
+    	
+    	<!-- 用户管理Action -->
+    	<action name="user_*" class="userAction" method="{1}">
+    		<result name="list">/WEB-INF/jsp/user/list.jsp</result>
+    		<result name="toList" type="redirectAction">
+    			<param name="actionName">user_list</param>
+    			<param name="namespace">/</param>
+    		</result>
+    		<result name="addUI">/WEB-INF/jsp/user/save.jsp</result>
+    		<result name="editUI">/WEB-INF/jsp/user/save.jsp</result>
+    		<result name="home">/WEB-INF/jsp/home/index.jsp</result>
+    		<result name="loginUI">/login.jsp</result>
+    	</action>
+    	
+    	<!-- 首页Action -->
+    	<action name="home_*" class="homeAction" method="{1}">
+    		<result name="{1}">/WEB-INF/jsp/home/{1}.jsp</result>
+    	</action>
+    	
+    	<!-- 版块管理Action -->
+    	<action name="forumManage_*" class="forumManageAction" method="{1}">
+    		<result name="list">/WEB-INF/jsp/forumManage/list.jsp</result>
+    		<result name="toList" type="redirectAction">
+    			<param name="actionName">forumManage_list</param>
+    			<param name="namespace">/</param>
+    		</result>
+    		<result name="addUI">/WEB-INF/jsp/forumManage/save.jsp</result>
+    		<result name="editUI">/WEB-INF/jsp/forumManage/save.jsp</result>
+    	</action>
+    	
+    	<!-- 参与版块操作的Action -->
+    	<action name="forum_*" class="forumAction" method="{1}">
+    		<result name="list">/WEB-INF/jsp/forum/list.jsp</result>
+    		<result name="forumShow">/WEB-INF/jsp/forum/show.jsp</result>
+    	</action>
+    	
+    	<!-- 主题操作Action -->
+    	<action name="topic_*" class="topicAction" method="{1}">
+    		<result name="addUI">/WEB-INF/jsp/topic/add.jsp</result>
+    		<result name="toTopicList" type="redirectAction">
+    			<param name="actionName">forum_show?id=${forumId}</param>
+    			<param name="namespace">/</param>
+    		</result>
+    		<result name="show">/WEB-INF/jsp/topic/show.jsp</result>
+    	</action>
+    	
+    	<!-- 回复操作Action -->
+    	<action name="reply_*" class="replyAction" method="{1}">
+    		<result name="toReplyList" type="redirectAction">
+    			<param name="actionName">topic_show?id=${topicId}</param>
+    			<param name="namespace">/</param>
+    		</result>
+    		<result name="addUI">/WEB-INF/jsp/reply/add.jsp</result>
+    	</action>
+    </package>
+</struts>
