@@ -45,6 +45,12 @@
 				<value>classpath:cn/itcast/oa/domain</value>
 			</list>
 		</property>
+		<!-- 加载jbpm jar包中的hbm映射文件 -->
+		<property name="mappingJarLocations">
+			<list>
+				<value>/WEB-INF/lib/jbpm.jar</value>
+			</list>
+		</property>
 	</bean>
 	
 	<!-- Hibernate事务管理器 -->
@@ -60,4 +66,12 @@
 	<!-- 注解驱动 -->
 	<tx:annotation-driven transaction-manager="txManager"/>
 	
+	<!-- 配置jbpm和spring框架整合的核心类 -->
+	<bean id="springHelper" class="org.jbpm.pvm.internal.processengine.SpringHelper">
+		<!-- 指定jbpm框架的核心配置文件 -->
+		<property name="jbpmCfg" value="jbpm.cfg.xml"/>
+	</bean>
+	
+	<!-- 配置ProcessEngine对象 -->
+	<bean id="processEngine" factory-bean="springHelper" factory-method="createProcessEngine"></bean>
 </beans>

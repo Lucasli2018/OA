@@ -107,5 +107,56 @@
     		</result>
     		<result name="addUI">/WEB-INF/jsp/reply/add.jsp</result>
     	</action>
+    	
+    	<!-- 流程定义管理Action -->
+    	<action name="processDefinition_*" class="processDefinitionAction" method="{1}">
+    		<result name="list">/WEB-INF/jsp/processDefinition/list.jsp</result>
+    		<result name="addUI">/WEB-INF/jsp/processDefinition/add.jsp</result>
+    		<result name="toList" type="redirectAction">
+    			<param name="actionName">processDefinition_list</param>
+    			<param name="namespace">/</param>
+    		</result>
+    		<result name="showImage" type="stream">
+    			   <param name="contentType">image/png</param>
+				   <param name="inputName">inputStream</param>
+    		</result>
+    	</action>
+    	
+    	<!-- 模板管理Action -->
+    	<action name="template_*" class="templateAction" method="{1}">
+    		<result name="list">/WEB-INF/jsp/template/list.jsp</result>
+    		<result name="addUI">/WEB-INF/jsp/template/save.jsp</result>
+    		<result name="toList" type="redirectAction">
+    			<param name="actionName">template_list</param>
+    			<param name="namespace">/</param>
+    		</result>
+    		<result name="editUI">/WEB-INF/jsp/template/save.jsp</result>
+    		<result name="download" type="stream">
+				<param name="inputName">downloadFile</param>
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+    		</result>
+    	</action>
+    	
+    	<!-- 流转Action -->
+    	<action name="flow_*" class="flowAction" method="{1}">
+    		<result name="templateList">/WEB-INF/jsp/flow/templateList.jsp</result>
+    		<result name="submitUI">/WEB-INF/jsp/flow/submitUI.jsp</result>
+    		<result name="myApplicationList">/WEB-INF/jsp/flow/myApplicationList.jsp</result>
+    		<result name="download" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+    		</result>
+    		<result name="toMyApplicationList" type="redirectAction">
+    			<param name="actionName">flow_myApplicationList</param>
+    			<param name="namespace">/</param>
+    		</result>
+    		<result name="historyApprovedList">/WEB-INF/jsp/flow/historyApprovedList.jsp</result>
+    		<result name="myTaskList">/WEB-INF/jsp/flow/myTaskList.jsp</result>
+    		<result name="approveUI">/WEB-INF/jsp/flow/approveUI.jsp</result>
+    		<result name="toMyTaskList" type="redirectAction">
+    			<param name="actionName">flow_myTaskList</param>
+    			<param name="namespace">/</param>
+    		</result>
+    	</action>
     </package>
 </struts>

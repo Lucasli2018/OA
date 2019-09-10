@@ -22,8 +22,6 @@ public class PageBean {
 	private int endPageIndex;//---结束页码
 	
 	public PageBean() {}
-	
-	
 
 	public PageBean(int currentPage, int pageSize, int recordCount,List recordList) {
 		this.currentPage = currentPage;

@@ -13,8 +13,10 @@ import cn.itcast.oa.service.IDepartmentService;
 import cn.itcast.oa.service.IForumManageService;
 import cn.itcast.oa.service.IForumService;
 import cn.itcast.oa.service.IPrivilegeService;
+import cn.itcast.oa.service.IProcessDefinitionService;
 import cn.itcast.oa.service.IReplyService;
 import cn.itcast.oa.service.IRoleService;
+import cn.itcast.oa.service.ITemplateService;
 import cn.itcast.oa.service.ITopicService;
 import cn.itcast.oa.service.IUserService;
 
@@ -47,6 +49,11 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 	protected ITopicService topicService;
 	@Resource
 	protected IReplyService replyService;
+	@Resource
+	protected ITemplateService templateService;
+	@Resource
+	protected IProcessDefinitionService processDefinitionService;
+
 	
 	//在构造方法中获得model类型
 	public BaseAction(){

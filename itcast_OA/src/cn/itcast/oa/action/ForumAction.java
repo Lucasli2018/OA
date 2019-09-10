@@ -90,7 +90,7 @@ public class ForumAction extends BaseAction<Forum>{
 		getValueStack().set("topicList", topicList);*/
 		
 		HQLHelper hh = new HQLHelper(Topic.class);
-		
+		hh.addWhere("o.forum = ?", model);
 		if(viewType == 1){
 			//查询精华帖
 			hh.addWhere("o.type = ?", 1);

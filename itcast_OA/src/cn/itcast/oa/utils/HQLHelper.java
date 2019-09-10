@@ -12,7 +12,6 @@ public class HQLHelper {
 	private String fromStr;//FROM 子句
 	private String whereStr = "";//WHERE 子句
 	private String orderByStr = "";//ORDER BY 子句
-	
 	private List<Object> args = new ArrayList<Object>();//封装HQL中对应的参数信息
 	
 	public HQLHelper() {}
@@ -84,5 +83,4 @@ public class HQLHelper {
 	public List<Object> getArgs() {
 		return args;
 	}
-	
 }
